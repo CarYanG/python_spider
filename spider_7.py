@@ -11,6 +11,7 @@ except urllib2.URLError,e:
     print e.read()
     print e.code
     print e.reason
+    print e.info()
 
 
 

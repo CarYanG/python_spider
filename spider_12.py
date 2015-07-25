@@ -14,11 +14,11 @@ Openers使用处理器handlers，所有的“繁重”工作由handlers处理。
 
 如果你希望用特定处理器获取URLs你会想创建一个openers，例如获取一个能处理cookie的opener，或者获取一个不重定向的opener。
 
-要创建一个 opener，可以实例化一个OpenerDirector，
+1、要创建一个 opener，可以实例化一个OpenerDirector，
 然后调用.add_handler(some_handler_instance)。
 
 
-同样，可以使用build_opener，这是一个更加方便的函数，用来创建opener对象，他只需要一次函数调用。
+2、同样，可以使用build_opener，这是一个更加方便的函数，用来创建opener对象，他只需要一次函数调用。
 build_opener默认添加几个处理器，但提供快捷的方法来添加或更新默认处理器。
 其他的处理器handlers你或许会希望处理代理，验证，和其他常用但有点特殊的情况。
 

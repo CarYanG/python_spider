@@ -21,3 +21,7 @@ response = urllib2.urlopen(req)
 
 print response.read()
 
+'''
+浏览器确认自己身份是通过User-Agent头，当你创建了一个请求对象，你可以给他一个包含头数据的字典。
+下面的例子发送跟上面一样的内容，但把自身模拟成Internet Explorer。
+'''

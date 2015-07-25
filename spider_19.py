@@ -32,7 +32,7 @@ def baidu_tieba(url,begin_page,end_page):
 #iPostBegin = 1
 #iPostEnd = 10
 
-bdurl = str(raw_input(u'请输入贴吧的地址，去掉pn=后面的数字：\n'))
+bdurl = str(raw_input('请输入贴吧的地址，去掉pn=后面的数字：\n'))
 begin_page = int(raw_input(u'请输入开始的页数：\n'))
 end_page = int(raw_input(u'请输入终点的页数：\n'))
 #-------- 在这里输入参数 ------------------
