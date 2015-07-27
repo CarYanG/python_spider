@@ -30,13 +30,13 @@ class Spider_Model:
 
         # 找出所有class="content"的div标记
         #re.S是任意匹配模式，也就是.可以匹配换行符
-        myItems = re.findall('<div.*?class="content".*?title="(.*?)">(.*?)</div>',unicodePage,re.S)
-        items = []
+        myItems = re.findall('<div.*?class="content".*?>(.*?)<!--(.*?)-->.*?</div>',unicodePage,re.S)
+        page_content = []
         for item in myItems:
             # item 中第一个是div的标题，也就是时间
             # item 中第二个是div的内容，也就是内容
-            items.append([item[0].replace("\n",""),item[1].replace("\n","")])
-        return items
+            page_content.append([item[0].replace("\n",""),item[1].replace("\n","")])
+        return page_content
 
     # 用于加载新的段子
     def LoadPage(self):
