@@ -1,5 +1,5 @@
-__author__ = 'carl'
 # -*- coding: utf-8 -*-
+__author__ = 'carl'
 #---------------------------------------
 #   程序：百度贴吧爬虫
 #   版本：0.5
@@ -37,8 +37,8 @@ class HTML_Tool:
         x = self.CharToNextTabRex.sub("\t",x)
         x = self.EndCharToNoneRex.sub("",x)
 
-        for t in self.replaceTab:
-            x = x.replace(t[0],t[1])
+       # for t in self.replaceTab:
+           # x = x.replace(t[0],t[1])
         return x
 
 class Baidu_Spider:
@@ -52,7 +52,7 @@ class Baidu_Spider:
     # 初始化加载页面并将其转码储存
     def baidu_tieba(self):
         # 读取页面的原始信息并将其从gbk转码
-        myPage = urllib2.urlopen(self.myUrl).read().decode("gbk")
+        myPage = urllib2.urlopen(self.myUrl).read()
         # 计算楼主发布内容一共有多少页
         endPage = self.page_counter(myPage)
         # 获取该帖的标题
@@ -76,10 +76,10 @@ class Baidu_Spider:
     # 用来寻找该帖的标题
     def find_title(self,myPage):
         # 匹配 <h1 class="core_title_txt" title="">xxxxxxxxxx</h1> 找出标题
-        myMatch = re.search(r'<h1.*?>(.*?)</h1>', myPage, re.S)
+        myMatch = re.search(r'<title>(.*?)</title>', myPage, re.S)
         title = u'暂无标题'
         if myMatch:
-            title  = myMatch.group(1)
+            title  = myMatch.group(1).decode("utf-8")
         else:
             print u'爬虫报告：无法加载文章标题！'
         # 文件名不能包含以下字符： \ / ： * ? " < > |
@@ -106,14 +106,14 @@ class Baidu_Spider:
             print u'爬虫报告：爬虫%d号正在加载中...' % i
             myPage = urllib2.urlopen(url + str(i)).read()
             # 将myPage中的html代码处理并存储到datas里面
-            self.deal_data(myPage.decode('gbk'))
+            self.deal_data(myPage)
 
 
     # 将内容从页面代码中抠出来
     def deal_data(self,myPage):
         myItems = re.findall('id="post_content.*?>(.*?)</div>',myPage,re.S)
         for item in myItems:
-            data = self.myTool.Replace_Char(item.replace("\n","").encode('gbk'))
+            data = self.myTool.Replace_Char(item.replace("\n",""))
             self.datas.append(data+'\n')
 
 
